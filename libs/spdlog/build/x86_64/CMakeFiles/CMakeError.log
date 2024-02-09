@@ -1,0 +1,60 @@
+Performing C++ SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: C:/Users/LIZA/Downloads/RPO2024_likova/libs/spdlog/build/x86_64/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/LIZA/AppData/Local/Android/Sdk/cmake/3.22.1/bin/ninja.exe cmTC_c03e3 && [1/2] Building CXX object CMakeFiles/cmTC_c03e3.dir/src.cxx.o
+FAILED: CMakeFiles/cmTC_c03e3.dir/src.cxx.o 
+C:\Users\LIZA\AppData\Local\Android\Sdk\ndk\25.1.8937393\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=x86_64-none-linux-android21 --sysroot=C:/Users/LIZA/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -DCMAKE_HAVE_LIBC_PTHREAD  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -DSPDLOG_COMPILED_LIB  -fPIE -std=c++11 -MD -MT CMakeFiles/cmTC_c03e3.dir/src.cxx.o -MF CMakeFiles\cmTC_c03e3.dir\src.cxx.o.d -o CMakeFiles/cmTC_c03e3.dir/src.cxx.o -c C:/Users/LIZA/Downloads/RPO2024_likova/libs/spdlog/build/x86_64/CMakeFiles/CMakeTmp/src.cxx
+C:/Users/LIZA/Downloads/RPO2024_likova/libs/spdlog/build/x86_64/CMakeFiles/CMakeTmp/src.cxx:13:3: error: use of undeclared identifier 'pthread_cancel'
+  pthread_cancel(thread);
+  ^
+1 error generated.
+ninja: build stopped: subcommand failed.
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: C:/Users/LIZA/Downloads/RPO2024_likova/libs/spdlog/build/x86_64/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/LIZA/AppData/Local/Android/Sdk/cmake/3.22.1/bin/ninja.exe cmTC_883fd && [1/2] Building CXX object CMakeFiles/cmTC_883fd.dir/CheckFunctionExists.cxx.o
+[2/2] Linking CXX executable cmTC_883fd
+FAILED: cmTC_883fd 
+cmd.exe /C "cd . && C:\Users\LIZA\AppData\Local\Android\Sdk\ndk\25.1.8937393\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=x86_64-none-linux-android21 --sysroot=C:/Users/LIZA/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -DSPDLOG_COMPILED_LIB -DCHECK_FUNCTION_EXISTS=pthread_create -static-libstdc++ -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--fatal-warnings -Wl,--gc-sections -Wl,--no-undefined -Qunused-arguments -Wl,--gc-sections CMakeFiles/cmTC_883fd.dir/CheckFunctionExists.cxx.o -o cmTC_883fd  -lpthreads  -latomic -lm && cd ."
+ld: error: unable to find library -lpthreads
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.
+
+
+
+Determining if the function pthread_create exists in the pthread failed with the following output:
+Change Dir: C:/Users/LIZA/Downloads/RPO2024_likova/libs/spdlog/build/x86_64/CMakeFiles/CMakeTmp
+
+Run Build Command(s):C:/Users/LIZA/AppData/Local/Android/Sdk/cmake/3.22.1/bin/ninja.exe cmTC_aedd9 && [1/2] Building CXX object CMakeFiles/cmTC_aedd9.dir/CheckFunctionExists.cxx.o
+[2/2] Linking CXX executable cmTC_aedd9
+FAILED: cmTC_aedd9 
+cmd.exe /C "cd . && C:\Users\LIZA\AppData\Local\Android\Sdk\ndk\25.1.8937393\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=x86_64-none-linux-android21 --sysroot=C:/Users/LIZA/AppData/Local/Android/Sdk/ndk/25.1.8937393/toolchains/llvm/prebuilt/windows-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -DSPDLOG_COMPILED_LIB -DCHECK_FUNCTION_EXISTS=pthread_create -static-libstdc++ -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--fatal-warnings -Wl,--gc-sections -Wl,--no-undefined -Qunused-arguments -Wl,--gc-sections CMakeFiles/cmTC_aedd9.dir/CheckFunctionExists.cxx.o -o cmTC_aedd9  -lpthread  -latomic -lm && cd ."
+ld: error: unable to find library -lpthread
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+ninja: build stopped: subcommand failed.
+
+
+
