@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements TransactionEvents
     }
 
     static {
-        System.loadLibrary("native-lib");
+        System.loadLibrary("fclient");
         System.loadLibrary("mbedcrypto");
     }
 
